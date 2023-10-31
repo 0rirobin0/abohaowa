@@ -10,6 +10,16 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   @override
+  void initState() {
+    super.initState();
+
+    // Use Future.delayed to navigate after 1 second
+    Future.delayed(Duration(seconds: 1), () {
+      Navigator.pushNamed(context, "/home");
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.amber,
