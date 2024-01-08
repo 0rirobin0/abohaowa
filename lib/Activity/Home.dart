@@ -27,21 +27,25 @@ class _HomeState extends State<Home> {
   //fuction to get data
 
   void Startup () async
-
   {
-    data instance  = data(Location: "Helsinki");
+  data instance = data(Location: "Helsinki");
     await instance.getData();
-    print(instance.Location);
-    print(instance.description);
-    print(instance.temp);
-    print(instance.humidity);
-    print(instance.air_speed);
+
+    //
+    //
+    // print(instance.Location);
+    // print(instance.description);
+    // print(instance.temp);
+    // print(instance.humidity);
+    // print(instance.air_speed);
+
     setState(() {
-      Location=instance.Location;
-      description=instance.description;
-      temp=instance.temp;
-     humidity= instance.humidity;
-      air_speed=instance.air_speed;
+        Location = instance.Location;
+        description = instance.description;
+        temp = instance.temp;
+        humidity = instance.humidity;
+        air_speed = instance.air_speed;
+
 
     });
 
