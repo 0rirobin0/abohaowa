@@ -10,8 +10,9 @@ void main() {
     initialRoute: "/",
     routes:
     {
-      "/" : (contex) => Loading(),
-      "/home" : (context) =>Home(),
+      "/" : (context) => const Loading(),
+      "/home" : (context) =>const Home(),
+      "/Location" : (context) =>const Location(),
     },
 
 

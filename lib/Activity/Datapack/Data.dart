@@ -1,9 +1,8 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart';
 
 
-class data {
+class Data {
 
   String? temp;
   String? humidity;
@@ -14,8 +13,8 @@ class data {
 
   //constructor
 
-  data({this.Location}) {
-    this.Location;
+  Data({this.Location}) {
+    Location;
   }
 
   //get data method
@@ -28,34 +27,36 @@ class data {
          //await function er jnno wait kore jatokhn na function data get kore return kore eita async ei power dey
       Response response = await get(Uri.parse
         (                                               //Location variable location ene dibi url e
-          "http://api.openweathermap.org/data/2.5/weather?q=$Location&appid=e34a5eb0b4c5ff748fdf9219a63d224e")) as Response;
+          "http://api.openweathermap.org/data/2.5/weather?q=$Location&appid=e34a5eb0b4c5ff748fdf9219a63d224e"));
 
       Map? Dictionary = jsonDecode(response.body); // Json total tai akta dictionary bola cole ja akta map
 
       //description
       List Weather = Dictionary?["weather"];  // dictionary map er moddeh map o thake list o thake
-      Map weatherdata = Weather?[0];
+      Map weatherdata = Weather[0];
       String Main = weatherdata["main"];
       String des = weatherdata["description"];
-
-
       //Assigning data
-      this.main = Main;
-      this.description = des;
+      main = Main;
+      description = des;
+
+
 
       //Temp,humidity
       Map basedata = Dictionary?["main"];
-      double Temp = basedata?["temp"];
+      double Temp = basedata["temp"]-273.25;
       int humi = basedata["humidity"];
+      //Assigning data
+      temp = Temp.toStringAsFixed(2);
+      humidity = humi.toString();
 
-      this.temp = Temp.toString();
-      this.humidity = humi.toString();
+
 
       //air speed
       Map windata = Dictionary?["wind"];
-      double windspeed = windata["speed"];
+      double windspeed = windata["speed"]/0.27777777777778;
       //assigning
-      this.air_speed = windspeed.toString(); //jehetu parameter gulo string tai string bania newa howese
+      air_speed = windspeed.toStringAsFixed(2); //jehetu parameter gulo string tai string bania newa howese
     }
 
 
